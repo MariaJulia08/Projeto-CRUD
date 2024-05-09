@@ -11,6 +11,6 @@ while True:
           '[3]: DELETAR'
           '[4]: ATUALIZAR'
           '[5]: SALVAR'
-          '[6]: SAIR'
+          '[6]: SAIR foda-se'
           )
     
