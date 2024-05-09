@@ -10,6 +10,6 @@ while True:
           '[3]: DELETAR'
           '[4]: ATUALIZAR'
           '[5]: SALVAR'
-          '[6]: SAIR teste'
+          '[6]: SAIR teste1232313'
           )
     
