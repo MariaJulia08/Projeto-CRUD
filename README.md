@@ -1,7 +1,7 @@
 Receitas
 
 Este é um programa em Python que permite gerenciar receitas. 
-Ele oferece funcionalidades como adicionar receitas, visualizar receitas por categoria, atualizar informações, excluir receitas e visualizar receeitas por país.
+Ele oferece funcionalidades como adicionar receitas, visualizar receitas por categoria, atualizar informações, excluir receitas e visualizar receitas por país.
 
 Programação
 
