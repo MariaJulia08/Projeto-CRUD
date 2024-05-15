@@ -1,7 +1,7 @@
 import os 
 os.system("cls")
 
-#Função para o menu principal
+# Função para o menu principal
 def menu():
     print("""\n\n█▀▄▀█ █▀▀ █▄░█ █░█ \n█░▀░█ ██▄ █░▀█ █▄█\n\n\n█▀█ █▀█ █ █▄░█ █▀▀ █ █▀█ ▄▀█ █░░\n█▀▀ █▀▄ █ █░▀█ █▄▄ █ █▀▀ █▀█ █▄▄\n\n
 OPÇÕES:
@@ -16,7 +16,7 @@ OPÇÕES:
  \n\n""")
     return input("escolha a opção desejada: ")
 
-#Função para checar opção
+# Função para checar opção
 def checagem_opcao(opcao):
     if opcao.isnumeric():
         if int(opcao) < 1 or int(opcao) > 6:        
@@ -24,7 +24,7 @@ def checagem_opcao(opcao):
     elif opcao.isalpha():
              return True   
 
-#Função para checar valor
+# Função para checar valor
 def check_menu():
     checagem_valor = menu()
     while checagem_opcao(checagem_valor): 
@@ -32,25 +32,28 @@ def check_menu():
         checagem_valor= menu()
     return int(checagem_valor)  
 
-#Função para imprimir uma linha decorativa
+# Função para imprimir uma linha decorativa
 def print_linha_embelezada():
     tamanho_terminal = 70
     linha = '-' * tamanho_terminal
     print(f"\n{linha}\n")
 
-#Função para adicionar
+# Função para cadastrar uma nova receita
 def adicionar():
-    print("oi1")
+    nome = input("Digite o nome da receita: ")
+    pais_origem = input("Digite o país de origem da receita: ")
+    ingredientes = input("Digite os ingredientes da receita (separados por vírgula): ").split(',')
+    modo_preparo = input("Digite o modo de preparo da receita: ")
     
-#Função para visualizar
+# Função para visualizar uma receita
 def vizualizar():
     print("oi2")
     
-#Função para atualizar
+# Função para atualizar uma receita
 def atualizar():
     print("oi3")
     
-#Função para deletar
+# Função para deletar uma receita
 def deletar():
     print("oi4")
     
