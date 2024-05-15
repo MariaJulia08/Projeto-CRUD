@@ -29,6 +29,11 @@ def check_menu():
         checagem_valor= menu()
     return int(checagem_valor)  
 
+def print_linha_embelezada():
+    tamanho_terminal = 70
+    linha = '-' * tamanho_terminal
+    print(f"\n{linha}\n")
+
 def adicionar():
     print("oi1")
     
