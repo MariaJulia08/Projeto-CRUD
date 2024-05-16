@@ -48,7 +48,7 @@ def adicionar():
 # Função para visualizar uma receita
 def vizualizar():
     print("oi2")
-    
+
 # Função para atualizar uma receita
 def atualizar():
     print("oi3")
