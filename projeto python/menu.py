@@ -45,9 +45,25 @@ def adicionar():
     ingredientes = input("Digite os ingredientes da receita (separados por vírgula): ").split(',')
     modo_preparo = input("Digite o modo de preparo da receita: ")
     
-# Função para visualizar uma receita
-def vizualizar():
-    print("oi2")
+# Função para visualizar todas as receitas cadastradas
+def visualizar():
+    try:
+        with open('receitas.txt', 'r') as arquivo:
+            print("""\n\n
+██████╗░███████╗░█████╗░███████╗██╗████████╗░█████╗░░██████╗██╗
+██╔══██╗██╔════╝██╔══██╗██╔════╝██║╚══██╔══╝██╔══██╗██╔════╝╚═╝
+██████╔╝█████╗░░██║░░╚═╝█████╗░░██║░░░██║░░░███████║╚█████╗░░░░
+██╔══██╗██╔══╝░░██║░░██╗██╔══╝░░██║░░░██║░░░██╔══██║░╚═══██╗░░░
+██║░░██║███████╗╚█████╔╝███████╗██║░░░██║░░░██║░░██║██████╔╝██╗
+╚═╝░░╚═╝╚══════╝░╚════╝░╚══════╝╚═╝░░░╚═╝░░░╚═╝░░╚═╝╚═════╝░╚═╝\n\n""")
+            for linha in arquivo:
+                nome, pais_origem, ingredientes, modo_preparo = linha.strip().split('|')
+                print(f"\nNome: {nome}")
+                print(f"País de Origem: {pais_origem}")
+                print(f"Ingredientes: {', '.join(ingredientes.split(','))}")
+                print(f"Modo de Preparo: {modo_preparo}")
+    except FileNotFoundError:
+        print("Ainda não há receitas cadastradas.\n")
 
 # Função para atualizar uma receita
 def atualizar():
@@ -62,7 +78,7 @@ def main():
     if opcao == 1:
         adicionar()
     elif opcao == 2:
-        vizualizar()
+        visualizar()
     elif opcao == 3:
         deletar()
     elif opcao == 4:
