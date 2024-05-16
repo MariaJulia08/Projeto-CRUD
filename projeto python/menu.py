@@ -2,41 +2,52 @@ import os
 os.system("cls")
 
 # Função para o menu principal
-def menu():
-    print("""\n\n█▀▄▀█ █▀▀ █▄░█ █░█ \n█░▀░█ ██▄ █░▀█ █▄█\n\n\n█▀█ █▀█ █ █▄░█ █▀▀ █ █▀█ ▄▀█ █░░\n█▀▀ █▀▄ █ █░▀█ █▄▄ █ █▀▀ █▀█ █▄▄\n\n
-OPÇÕES:
-[1]: ADICIONAR
-[2]: VISUALIZAR
-[3]: DELETAR
-[4]: ATUALIZAR
-[5]: FAVORITOS
-[6]: SUGERIR RECEITA ALEATÓRIA
-[7]: EXTRA 
-[8]: SALVAR
- \n\n""")
-    return input("escolha a opção desejada: ")
+def main():
+    while True:
+        print("""             
+1. Cadastrar Nova Receita
+              
+2. Visualizar Todas as Receita
 
-# Função para checar opção
-def checagem_opcao(opcao):
-    if opcao.isnumeric():
-        if int(opcao) < 1 or int(opcao) > 6:        
-           return True
-    elif opcao.isalpha():
-             return True   
+3. Editar Receita
 
-# Função para checar valor
-def check_menu():
-    checagem_valor = menu()
-    while checagem_opcao(checagem_valor): 
-        print("Valor Inválido")         
-        checagem_valor= menu()
-    return int(checagem_valor)  
+4. Adicionar Receita aos Favoritos
 
-# Função para imprimir uma linha decorativa
-def print_linha_embelezada():
-    tamanho_terminal = 70
-    linha = '-' * tamanho_terminal
-    print(f"\n{linha}\n")
+5. Visualizar Receitas Favoritas
+
+6. Remover Receita dos Favoritos
+
+7. Sugerir Receita Aleatória
+
+8. Filtrar Receitas por País
+
+9. Sair\n\n""")
+        opcao = input("BEM VINDO RAFA, QUAL DAS OPÇÕES ACIMA VAI SER ESCOLHIDA?  ")
+        if opcao == '1':
+            cadastrar_receita()
+        elif opcao == '2':
+            visualizar_receitas()
+        elif opcao == '3':
+            editar_receita()
+        elif opcao == '4':
+            adicionar_favorito()
+        elif opcao == '5':
+            visualizar_favoritos()
+        elif opcao == '6':
+            remover_favorito()
+        elif opcao == '7':
+            sugerir_receita_aleatoria()
+        elif opcao == '8':
+            filtrar_por_pais()
+        elif opcao == '9':
+            print("Saindo do programa...")
+            break
+        else:
+            print("Opção inválida. Tente novamente.\n")
+
+
+
+
 
 # Função para cadastrar uma nova receita
 def adicionar():
@@ -44,6 +55,12 @@ def adicionar():
     pais_origem = input("Digite o país de origem da receita: ")
     ingredientes = input("Digite os ingredientes da receita (separados por vírgula): ").split(',')
     modo_preparo = input("Digite o modo de preparo da receita: ")
+    
+    with open('receitas.txt', 'a') as arquivo:
+        arquivo.write(f"{nome}|{pais_origem}|{','.join(ingredientes)}|{modo_preparo}\n")
+
+    print("\nReceita cadastrada com sucesso!\n")
+    
     
 # Função para visualizar todas as receitas cadastradas
 def visualizar():
@@ -73,20 +90,8 @@ def atualizar():
 def deletar():
     print("oi4")
     
-def main(): 
-    opcao = check_menu()
-    if opcao == 1:
-        adicionar()
-    elif opcao == 2:
-        visualizar()
-    elif opcao == 3:
-        deletar()
-    elif opcao == 4:
-        atualizar()
-    elif opcao == 5:
-        print("oi5")
-    elif opcao == 6:
-        print("Saindo...")
+
+        
         
 if __name__ == "__main__":
     main()          
