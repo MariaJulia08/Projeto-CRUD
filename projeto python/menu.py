@@ -28,7 +28,7 @@ def main():
         elif opcao == '2':
             visualizar_receitas()
         elif opcao == '3':
-            editar_receita()
+            atualizar_receita()
         elif opcao == '4':
             adicionar_favorito()
         elif opcao == '5':
@@ -59,7 +59,7 @@ def adicionar_receita():
     with open('receitas.txt', 'a') as arquivo:
         arquivo.write(f"{nome}|{pais_origem}|{','.join(ingredientes)}|{modo_preparo}\n")
 
-    print("\nReceita cadastrada com sucesso!\n")
+    print("\nReceita cadastrada!\n")
     
     
 # Função para visualizar todas as receitas cadastradas
@@ -83,8 +83,43 @@ def visualizar_receitas():
         print("Ainda não há receitas cadastradas.\n")
 
 # Função para atualizar uma receita
-def atualizar():
-    print("oi3")
+def atualizar_receita():
+    nome_busca = input("\n\nDigite o nome da receita que deseja editar: ")
+    receitas = []
+    try:
+        with open('receitas.txt', 'r') as arquivo:
+            for linha in arquivo:
+                receitas.append(linha.strip().split('|'))
+    except FileNotFoundError:
+        print("\nAinda não há receitas cadastradas.\n")
+        return
+
+    for i, receita in enumerate(receitas):
+        if receita[0] == nome_busca:
+            print("\nEscreva as novas informações ou deixe em branco se não desejar alterar: \n")
+            nome = input("Nome da receita: ")
+            pais_origem = input("País de origem da receita: ")
+            ingredientes = input("Ingredientes da receita: ").split(',')
+            modo_preparo = input("Modo de preparo da receita: ")
+
+            # Verifica se foram fornecidos novos valores e os substitui, caso contrário, mantém os valores originais
+            if nome.strip():
+                receitas[i][0] = nome.strip()
+            if pais_origem.strip():
+                receitas[i][1] = pais_origem.strip()
+            if ingredientes:
+                receitas[i][2] = ','.join(ingredientes)
+            if modo_preparo.strip():
+                receitas[i][3] = modo_preparo.strip()
+
+            with open('receitas.txt', 'w') as arquivo:
+                for receita in receitas:
+                    arquivo.write(f"{receita[0]}|{receita[1]}|{receita[2]}|{receita[3]}\n")
+
+            print("\nReceita atualizada com sucesso!\n")
+            return
+
+    print("\nReceita não encontrada.\n")
     
 # Função para deletar uma receita
 def deletar():
