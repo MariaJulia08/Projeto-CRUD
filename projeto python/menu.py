@@ -33,7 +33,7 @@ def main():
             deletar()
         elif opcao == '5':
             adicionar_favorito()
-        elif opcao == '5':
+        elif opcao == '6':
             visualizar_favoritos()
         elif opcao == '7':
             remover_favorito()
@@ -146,6 +146,23 @@ def deletar():
             print("\nReceita excluída com sucesso!\n")
         else:
             print("\nReceita não encontrada.\n")
+
+# Função para adicionar uma receita como favorita
+def adicionar_favorito():
+    nome_receita = input("Digite o nome da receita que deseja adicionar como favorita: ")
+    try:
+        with open('receita.txt', 'r') as arquivo:
+            receitas = arquivo.readlines()
+        with open('receita.txt', 'w') as arquivo:
+            for linha in receitas:
+                if nome_receita in linha:
+                    if '*' not in linha:
+                        # Adiciona um asterisco (*) após o nome da receita para marcá-la como favorita
+                        linha = linha.strip() + " *\n"
+                arquivo.write(linha)
+        print("Receita adicionada aos favoritos!\n")
+    except FileNotFoundError:
+        print("Ainda não há receitas cadastradas.\n")
         
         
 if __name__ == "__main__":
