@@ -24,22 +24,24 @@ def main():
 9. Sair\n\n""")
         opcao = input("BEM VINDO RAFA, QUAL DAS OPÇÕES ACIMA VAI SER ESCOLHIDA?  ")
         if opcao == '1':
-            adicionar_receita()
+            adicionar()
         elif opcao == '2':
-            visualizar_receitas()
+            visualizar()
         elif opcao == '3':
-            atualizar_receita()
+            atualizar()
         elif opcao == '4':
+            deletar()
+        elif opcao == '5':
             adicionar_favorito()
         elif opcao == '5':
             visualizar_favoritos()
-        elif opcao == '6':
-            remover_favorito()
         elif opcao == '7':
-            sugerir_receita_aleatoria()
+            remover_favorito()
         elif opcao == '8':
-            filtrar_por_pais()
+            sugerir_receita_aleatoria()
         elif opcao == '9':
+            filtrar_por_pais()
+        elif opcao == '10':
             print("Saindo do programa...")
             break
         else:
@@ -50,7 +52,7 @@ def main():
 
 
 # Função para cadastrar uma nova receita
-def adicionar_receita():
+def adicionar():
     nome = input("Digite o nome da receita: ")
     pais_origem = input("Digite o país de origem da receita: ")
     ingredientes = input("Digite os ingredientes da receita, separando-os com vírgula").split(',')
@@ -63,7 +65,7 @@ def adicionar_receita():
     
     
 # Função para visualizar todas as receitas cadastradas
-def visualizar_receitas():
+def visualizar():
     try:
         with open('receitas.txt', 'r') as arquivo:
             print("""\n\n
@@ -83,7 +85,7 @@ def visualizar_receitas():
         print("Ainda não há receitas cadastradas.\n")
 
 # Função para atualizar uma receita
-def atualizar_receita():
+def atualizar():
     nome_busca = input("\n\nDigite o nome da receita que deseja editar: ")
     receitas = []
     try:
@@ -123,9 +125,27 @@ def atualizar_receita():
     
 # Função para deletar uma receita
 def deletar():
-    print("oi4")
-    
+    buscar = input("\n\nDigite o nome da receita que deseja excluir: ")
+    receitas = []
+    try:
+        with open('receitas.txt', 'r') as arquivo:
+            receitas = arquivo.readlines()
+    except FileNotFoundError:
+        print("\nAinda não há nenhuma receita cadastrada.\n")
+        return
 
+    with open('receitas.txt', 'w') as arquivo:
+        encontrou = False
+        for linha in receitas:
+            if linha.split('|')[0].strip() != buscar:
+                arquivo.write(linha)
+            else:
+                encontrou = True
+
+        if encontrou:
+            print("\nReceita excluída com sucesso!\n")
+        else:
+            print("\nReceita não encontrada.\n")
         
         
 if __name__ == "__main__":
