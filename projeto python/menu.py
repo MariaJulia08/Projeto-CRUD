@@ -24,7 +24,7 @@ def main():
 9. Sair\n\n""")
         opcao = input("BEM VINDO RAFA, QUAL DAS OPÇÕES ACIMA VAI SER ESCOLHIDA?  ")
         if opcao == '1':
-            cadastrar_receita()
+            adicionar_receita()
         elif opcao == '2':
             visualizar_receitas()
         elif opcao == '3':
@@ -50,10 +50,10 @@ def main():
 
 
 # Função para cadastrar uma nova receita
-def adicionar():
+def adicionar_receita():
     nome = input("Digite o nome da receita: ")
     pais_origem = input("Digite o país de origem da receita: ")
-    ingredientes = input("Digite os ingredientes da receita (separados por vírgula): ").split(',')
+    ingredientes = input("Digite os ingredientes da receita, separando-os com vírgula").split(',')
     modo_preparo = input("Digite o modo de preparo da receita: ")
     
     with open('receitas.txt', 'a') as arquivo:
@@ -63,7 +63,7 @@ def adicionar():
     
     
 # Função para visualizar todas as receitas cadastradas
-def visualizar():
+def visualizar_receitas():
     try:
         with open('receitas.txt', 'r') as arquivo:
             print("""\n\n
