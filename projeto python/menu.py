@@ -163,6 +163,22 @@ def adicionar_favorito():
         print("Receita adicionada aos favoritos!\n")
     except FileNotFoundError:
         print("Ainda não há receitas cadastradas.\n")
+
+def remover_favorito():
+    nome_receita = input("Digite o nome da receita que deseja remover dos favoritos: ")
+    try:
+        with open('receitas.txt', 'r') as arquivo:
+            receitas = arquivo.readlines()
+        with open('receitas.txt', 'w') as arquivo:
+            for linha in receitas:
+                if nome_receita in linha:
+                    if '*' in linha:
+                        # Remove o asterisco (*) para desmarcar a receita como favorita
+                        linha = linha.replace('*', '')
+                arquivo.write(linha)
+        print("Receita removida dos favoritos!\n")
+    except FileNotFoundError:
+        print("Ainda não há receitas cadastradas.\n")
         
         
 if __name__ == "__main__":
