@@ -203,6 +203,25 @@ def visualizar_favoritos():
                     print('-' * 50)  # Linha separadora entre as receitas
     except FileNotFoundError:
         print("Ainda não há receitas favoritas.\n")
+
+# Função para sugerir uma receita aleatória
+def sugerir_receita_aleatoria():
+    try:
+        with open('receitas.txt', 'r') as arquivo:
+            receitas = arquivo.readlines()
+        if receitas:
+            receita_aleatoria = random.choice(receitas).strip().split('|')
+            print("Receita Aleatória Sugerida:")
+            print("\nNome:", receita_aleatoria[0])
+            print("País de Origem:", receita_aleatoria[1])
+            print("Ingredientes:")
+            for ingrediente in receita_aleatoria[2].split(','):
+                print("- ", ingrediente.strip())
+            print("Modo de Preparo:", receita_aleatoria[3],"\n\n")
+        else:
+            print("Ainda não há receitas cadastradas.\n")
+    except FileNotFoundError:
+        print("Ainda não há receitas cadastradas.\n")
         
         
 if __name__ == "__main__":
