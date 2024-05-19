@@ -179,6 +179,30 @@ def remover_favorito():
         print("Receita removida dos favoritos!\n")
     except FileNotFoundError:
         print("Ainda não há receitas cadastradas.\n")
+
+def visualizar_favoritos():
+    try:
+        with open('receitas.txt', 'r') as arquivo:
+            print("""\n\n
+███████╗░█████╗░██╗░░░██╗░█████╗░██████╗░██╗████████╗░█████╗░░██████╗██╗
+██╔════╝██╔══██╗██║░░░██║██╔══██╗██╔══██╗██║╚══██╔══╝██╔══██╗██╔════╝╚═╝
+█████╗░░███████║╚██╗░██╔╝██║░░██║██████╔╝██║░░░██║░░░███████║╚█████╗░░░░
+██╔══╝░░██╔══██║░╚████╔╝░██║░░██║██╔══██╗██║░░░██║░░░██╔══██║░╚═══██╗░░░
+██║░░░░░██║░░██║░░╚██╔╝░░╚█████╔╝██║░░██║██║░░░██║░░░██║░░██║██████╔╝██╗
+╚═╝░░░░░╚═╝░░╚═╝░░░╚═╝░░░░╚════╝░╚═╝░░╚═╝╚═╝░░░╚═╝░░░╚═╝░░╚═╝╚═════╝░╚═╝\n\n""")
+            for linha in arquivo:
+                # Verifica se a linha possui o marcador de favorito (*)
+                if '*' in linha:
+                    nome, pais_origem, ingredientes, modo_preparo = linha.strip().split('|')
+                    print("\nNome:", nome.strip('*'))  # Remove o asterisco (*) do nome da receita
+                    print("País de Origem:", pais_origem)
+                    print("Ingredientes:")
+                    for ingrediente in ingredientes.split(','):
+                        print("- ", ingrediente.strip())  # Imprime cada ingrediente em uma linha separada
+                    print("Modo de Preparo:", modo_preparo)
+                    print('-' * 50)  # Linha separadora entre as receitas
+    except FileNotFoundError:
+        print("Ainda não há receitas favoritas.\n")
         
         
 if __name__ == "__main__":
