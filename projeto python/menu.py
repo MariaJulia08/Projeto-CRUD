@@ -247,5 +247,6 @@ def filtrar_por_pais():
     except FileNotFoundError:
         print("\nAinda não há receitas cadastradas.\n")      
     
-if __name__ == "main":
+    
+if __name__ == "__main__":
     main()
