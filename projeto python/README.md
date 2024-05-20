@@ -42,3 +42,6 @@ Antônio Trigueiro
 Luiz Nogueira
 
 Licença Este projeto está licenciado sob a Licença Cesar School.
+
+Fluxograma:
+<img width="1086" alt="image" src="https://github.com/MariaJulia08/Projeto-CRUD/assets/164015200/6545036e-e06d-4681-add9-82d43f596569">
