@@ -205,6 +205,7 @@ def visualizar_favoritos():
         print("Ainda não há receitas favoritas.\n")
 
 # Função para sugerir uma receita aleatória
+import random
 def sugerir_receita_aleatoria():
     try:
         with open('receitas.txt', 'r') as arquivo:
