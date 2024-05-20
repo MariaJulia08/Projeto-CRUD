@@ -225,5 +225,27 @@ def sugerir_receita_aleatoria():
         print("Ainda não há receitas cadastradas.\n")
         
         
+        
+        
+def filtrar_por_pais():
+    pais = input("\n\nDigite o país de origem para filtrar as receitas: ")
+    try:
+        with open('receitas.txt', 'r') as arquivo:
+            encontradas = False
+            for linha in arquivo:
+                nome, pais_origem, ingredientes, modo_preparo = linha.strip().split('|')
+                if pais_origem.lower() == pais.lower():
+                    print(f"\nNome: {nome}")
+                    print(f"País de Origem: {pais_origem}")
+                    print(f"Ingredientes: {', '.join(ingredientes.split(','))}")
+                    print(f"Modo de Preparo: {modo_preparo}")
+                    encontradas = True
+            if not encontradas:
+                print(f"\nNão foram encontradas receitas do país {pais}.\n")
+    except FileNotFoundError:
+        print("\nAinda não há receitas cadastradas.\n")
+        
+        
+        
 if __name__ == "__main__":
     main()          
