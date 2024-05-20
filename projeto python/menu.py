@@ -11,17 +11,19 @@ def main():
 
 3. Editar Receita
 
-4. Adicionar Receita aos Favoritos
+4. Excluir Receita
 
-5. Visualizar Receitas Favoritas
+5. Adicionar Receita aos Favoritos
 
-6. Remover Receita dos Favoritos
+6. Visualizar Receitas Favoritas
 
-7. Sugerir Receita Aleatória
+7. Remover Receita dos Favoritos
 
-8. Filtrar Receitas por País
+8. Sugerir Receita Aleatória
 
-9. Sair\n\n""")
+9. Filtrar Receitas por País
+
+10. Sair\n\n""")
         opcao = input("BEM VINDO RAFA, QUAL DAS OPÇÕES ACIMA VAI SER ESCOLHIDA?  ")
         if opcao == '1':
             adicionar()
@@ -55,7 +57,7 @@ def main():
 def adicionar():
     nome = input("Digite o nome da receita: ")
     pais_origem = input("Digite o país de origem da receita: ")
-    ingredientes = input("Digite os ingredientes da receita, separando-os com vírgula").split(',')
+    ingredientes = input("Digite os ingredientes da receita, separando-os com vírgula: ").split(',')
     modo_preparo = input("Digite o modo de preparo da receita: ")
     
     with open('receitas.txt', 'a') as arquivo:
@@ -151,9 +153,9 @@ def deletar():
 def adicionar_favorito():
     nome_receita = input("Digite o nome da receita que deseja adicionar como favorita: ")
     try:
-        with open('receita.txt', 'r') as arquivo:
+        with open('receitas.txt', 'r') as arquivo:
             receitas = arquivo.readlines()
-        with open('receita.txt', 'w') as arquivo:
+        with open('receitas.txt', 'w') as arquivo:
             for linha in receitas:
                 if nome_receita in linha:
                     if '*' not in linha:
@@ -194,7 +196,7 @@ def visualizar_favoritos():
                 # Verifica se a linha possui o marcador de favorito (*)
                 if '*' in linha:
                     nome, pais_origem, ingredientes, modo_preparo = linha.strip().split('|')
-                    print("\nNome:", nome.strip('*'))  # Remove o asterisco (*) do nome da receita
+                    print("\nNome:", nome.strip(''))  # Remove o asterisco () do nome da receita
                     print("País de Origem:", pais_origem)
                     print("Ingredientes:")
                     for ingrediente in ingredientes.split(','):
@@ -245,5 +247,5 @@ def filtrar_por_pais():
     except FileNotFoundError:
         print("\nAinda não há receitas cadastradas.\n")      
     
-if __name__ == "__main__":
-    main()          
+if __name__ == "main":
+    main()
