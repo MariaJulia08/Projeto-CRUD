@@ -106,7 +106,6 @@ def atualizar():
             ingredientes = input("Ingredientes da receita: ").split(',')
             modo_preparo = input("Modo de preparo da receita: ")
 
-            # Verifica se foram fornecidos novos valores e os substitui, caso contrário, mantém os valores originais
             if nome.strip():
                 receitas[i][0] = nome.strip()
             if pais_origem.strip():
@@ -159,7 +158,6 @@ def adicionar_favorito():
             for linha in receitas:
                 if nome_receita in linha:
                     if '*' not in linha:
-                        # Adiciona um asterisco (*) após o nome da receita para marcá-la como favorita
                         linha = linha.strip() + " *\n"
                 arquivo.write(linha)
         print("Receita adicionada aos favoritos!\n")
@@ -175,7 +173,6 @@ def remover_favorito():
             for linha in receitas:
                 if nome_receita in linha:
                     if '*' in linha:
-                        # Remove o asterisco (*) para desmarcar a receita como favorita
                         linha = linha.replace('*', '')
                 arquivo.write(linha)
         print("Receita removida dos favoritos!\n")
@@ -193,16 +190,15 @@ def visualizar_favoritos():
 ██║░░░░░██║░░██║░░╚██╔╝░░╚█████╔╝██║░░██║██║░░░██║░░░██║░░██║██████╔╝██╗
 ╚═╝░░░░░╚═╝░░╚═╝░░░╚═╝░░░░╚════╝░╚═╝░░╚═╝╚═╝░░░╚═╝░░░╚═╝░░╚═╝╚═════╝░╚═╝\n\n""")
             for linha in arquivo:
-                # Verifica se a linha possui o marcador de favorito (*)
                 if '*' in linha:
                     nome, pais_origem, ingredientes, modo_preparo = linha.strip().split('|')
-                    print("\nNome:", nome.strip(''))  # Remove o asterisco () do nome da receita
+                    print("\nNome:", nome.strip('')) 
                     print("País de Origem:", pais_origem)
                     print("Ingredientes:")
                     for ingrediente in ingredientes.split(','):
-                        print("- ", ingrediente.strip())  # Imprime cada ingrediente em uma linha separada
+                        print("- ", ingrediente.strip()) 
                     print("Modo de Preparo:", modo_preparo)
-                    print('-' * 50)  # Linha separadora entre as receitas
+                    print('-' * 50)  
     except FileNotFoundError:
         print("Ainda não há receitas favoritas.\n")
 
@@ -260,7 +256,7 @@ def filtrar_por_ingrediente():
             receitas = [linha.strip().split('|') for linha in arquivo]
             receitas_encontradas = [receita for receita in receitas if ingrediente in [ing.strip().lower() for ing in receita[2].split(',')]]
             
-            if receitas_encontradas: #printar as receitas com o ingrediente
+            if receitas_encontradas:
                 print(f"\nA seguir estão as receitas que contêm o ingrediente '{ingrediente}':\n")
                 for receita in receitas_encontradas:
                     print(f"\nNome: {receita[0]}")
