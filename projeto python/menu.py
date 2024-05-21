@@ -245,7 +245,40 @@ def filtrar_por_pais():
             if not encontradas:
                 print(f"\nNão foram encontradas receitas do país {pais}.\n")
     except FileNotFoundError:
-        print("\nAinda não há receitas cadastradas.\n")      
+        print("\nAinda não há receitas cadastradas.\n")   
+
+#Função para procurar receitas por ingredientes e reportar ingredientes alérgicos
+alergicos = ['amendoim', 'leite', 'trigo', 'castanha', 'camarão', 'lagosta','peixe','soja', "coco"]
+def filtrar_por_ingrediente():
+    ingrediente = input("Digite o ingrediente para procurar as receitas: ").lower()
+    
+    if ingrediente in alergicos: 
+        print(f"\nAtenção: O ingrediente '{ingrediente}' pode causar alergia em algumas pessoas.\n")
+    
+    try:
+        with open('receitas.txt', 'r') as arquivo:
+            receitas = [linha.strip().split('|') for linha in arquivo]
+            receitas_encontradas = [receita for receita in receitas if ingrediente in [ing.strip().lower() for ing in receita[2].split(',')]]
+            
+            if receitas_encontradas: #printar as receitas com o ingrediente
+                print(f"\nA seguir estão as receitas que contêm o ingrediente '{ingrediente}':\n")
+                for receita in receitas_encontradas:
+                    print(f"\nNome: {receita[0]}")
+                    print(f"País de Origem: {receita[1]}")
+                    print(f"Ingredientes: {', '.join(receita[2].split(','))}")
+                    print(f"Modo de Preparo: {receita[3]}")
+
+                    ingredientes_receita = [ing.strip().lower() for ing in receita[2].split(',')]
+                    ingredientes_alergicos = [ing for ing in ingredientes_receita if ing in alergicos]
+                    
+                    if ingredientes_alergicos:
+                        print(f"\nAtenção! Esta receita contém ingredientes que podem causar alergia à algumas pessoas: {', '.join(ingredientes_alergicos)}")
+
+            else:
+                print(f"\nNão foram encontradas receitas com o ingrediente '{ingrediente}'.\n")
+
+    except FileNotFoundError:
+        print("Ainda não há receitas cadastradas.\n")   
     
     
 if __name__ == "__main__":
