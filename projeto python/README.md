@@ -1,3 +1,4 @@
+MANUAL DO USUÁRIO
 Receitas
 
 Este é um programa em Python desenvolvido para gerenciar receitas culinárias. Ele possui funcionalidades como adicionar receitas, visualizar receitas por categoria, atualizar informações, excluir receitas e visualizar receitas por país.
@@ -8,11 +9,18 @@ O projeto foi inteiramente realizado utilizando a linguagem de programação Pyt
 
 Funcionalidades
 
-Adicionar Receita: Permite inserir informações de uma nova receita no Menu Principal, incluindo nome, país e modo de preparo.
-Visualizar Receitas por País: Exibe as receitas agrupadas por países, mostrando o nome, país e modo de preparo de cada receita.
-Atualizar Informações da Receita: Permite atualizar os dados de uma receita existente no Menu Principal, como país, categoria e modo de preparo.
-Excluir uma Receita: Remove uma receita do Menu Principal.
-Visualizar Receitas por País: Mostra as receitas de um país específico no Menu Principal.
+1. Adicionar Receita: Permite inserir informações de uma nova receita no Menu Principal, incluindo nome, país, ingridientes (por vírgula), e modo de preparo.
+2. Visualizar Receitas por País: Exibe as receitas agrupadas por países, mostrando o nome, país, ingredientes  modo de preparo de cada receita.
+3. Editar Receita: Permite atualizar os dados de uma receita existente no Menu Principal, como país, ingredientes e modo de preparo.
+4. Excluir uma Receita: Remove uma receita do Menu Principal.
+5. Visualizar Receitas por País: Mostra as receitas de um país específico no Menu Principal.
+6. Adicionar receitas nos favoritos: Adiciona um asterístico ao lado da receita escolhida pelo nome indicando-a como favorita.
+7. Remover receitas dos favoritos: remove a receita escolhida pelo nome da seleção de favoritos.
+8. Sugerir receita aleatória: sugere um receita aleatória dentre as cadastradas pelo usuario ou as pré-cadastradas no arquivo .txt com auxílio da biblioteca random.
+9. Vizualizar receitas favoritas: mostra ao usuário as receitas que foram marcadas como favoritas.
+10. Filtrar por ingredientes alergicos: identifica os ingredientes pre determinados como alérgicos e mostra as receitas que os contém.
+
+
 
 Execução:
 
